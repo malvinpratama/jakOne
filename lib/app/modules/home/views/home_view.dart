@@ -14,77 +14,80 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 196.h,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            ColorAssets.kPastelRed,
-                            ColorAssets.kRoyalOrange,
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50.r),
-                          bottomRight: Radius.circular(50.r),
+      body: SafeArea(
+        top: false,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 196.h,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              ColorAssets.kPastelRed,
+                              ColorAssets.kRoyalOrange,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(50.r),
+                            bottomRight: Radius.circular(50.r),
+                          ),
                         ),
                       ),
+                      _buildAppBar(context),
+                    ],
+                  ),
+                  _buildMenu(context),
+                  _buildBanner(),
+                  32.verticalSpace,
+                  _buildHeaderLandmark(context),
+                  16.verticalSpace,
+                  Obx(
+                    () => Column(
+                      children: [
+                        _buildLandmark(),
+                        20.verticalSpace,
+                        _buildLandmarkIndicator()
+                      ],
                     ),
-                    _buildAppBar(context),
-                  ],
-                ),
-                _buildMenu(context),
-                _buildBanner(),
-                32.verticalSpace,
-                _buildHeaderLandmark(context),
-                16.verticalSpace,
-                Obx(
-                  () => Column(
-                    children: [
-                      _buildLandmark(),
-                      20.verticalSpace,
-                      _buildLandmarkIndicator()
-                    ],
                   ),
-                ),
-                20.verticalSpace,
-                _buildHeaderEvent(context),
-                Obx(
-                  () => Column(
-                    children: [
-                      16.verticalSpace,
-                      _buildEvent(),
-                      20.verticalSpace,
-                      _buildEventIndicator()
-                    ],
+                  20.verticalSpace,
+                  _buildHeaderEvent(context),
+                  Obx(
+                    () => Column(
+                      children: [
+                        16.verticalSpace,
+                        _buildEvent(),
+                        20.verticalSpace,
+                        _buildEventIndicator()
+                      ],
+                    ),
                   ),
-                ),
-                127.75.verticalSpace,
-              ],
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 38.h,
-            child: InkWell(
-              onTap: () {},
-              child: Image.asset(
-                ImageAssets.kJakcardHelp,
-                width: 90.w,
-                height: 99.h,
+                  57.75.verticalSpace,
+                ],
               ),
             ),
-          )
-        ],
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: InkWell(
+                onTap: () {},
+                child: Image.asset(
+                  ImageAssets.kJakcardHelp,
+                  width: 90.w,
+                  height: 99.h,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
